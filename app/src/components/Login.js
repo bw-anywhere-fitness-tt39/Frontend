@@ -13,13 +13,13 @@ const Login = (props) => {
     });
 
     const [ disabled, setDisabled ] = useState(false);
-    const [ currentUsers, setCurrentUsers ] = useState([]);
+    // const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         username: '',
         password: ''
-    })
+    });
 
-    // Validates using correct parameters to username/password to right errors
+    // Validates using correct parameters in schema to username/password to right errors
     const validate = (name, value) => {
         yup
             .reach(schema, name)
@@ -36,15 +36,40 @@ const Login = (props) => {
                     [name]: err.errors[0]
                 })
             })
-    }
+    };
 
-    const change = (name, value) => {
+    // Gives ability to change value of text inputs for username/password
+    const textChange = (name, value) => {
         validate(name, value)
         setLoginInfo({
             ...loginInfo,
             [name]: value
         })
-    }
+    };
+
+    const onChange = (event) => {
+        textChange(event.target.name)
+    };
+
+    // gives Login button a click function
+    const onSubmit = (event) => {
+        event.preventDefault()
+        const user = {
+            username: loginInfo.username,
+            password: loginInfo.password
+        }
+        setLoginInfo({
+            username: '',
+            password: ''
+        })
+    };
+
+    useEffect(() => {
+        schema.isValid(loginInfo)
+        .then((res) => {
+            setDisabled(!res)
+        })
+    }, [loginInfo]);
 
 
 
@@ -58,6 +83,7 @@ const Login = (props) => {
                         value={loginInfo.username}
                         name='username'
                         placeholder='Username'
+                        onChange={onChange}
                     />
                 </label>
                 <label>
@@ -65,8 +91,10 @@ const Login = (props) => {
                         id='password'
                         type='password'
                         value={loginInfo.password}
+                        name='password'
                         password='password'
                         placeholder='Password'
+                        onChange={onChange}
                     />
                 </label>
                 {/* disabled until right amount of characters are typed in */}
