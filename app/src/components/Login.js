@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import * as yup from 'yup'
-import schema from './FormSchema'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import * as yup from 'yup';
+import schema from './FormSchema';
 
 const Login = (props) => {
 
-    // Setting state with an object of username and password
+    // Setting state with an object of email and password
     const [ loginInfo, setLoginInfo ] = useState({
-        username: '',
+        email: '',
         password: ''
     });
 
     const [ disabled, setDisabled ] = useState(false);
     const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
-        username: '',
+        email: '',
         password: ''
     });
 
-    // Validates using correct parameters in schema to username/password to right errors
+    // Validates using correct parameters in schema to email/password to right errors
     const validate = (name, value) => {
         yup
             .reach(schema, name)
@@ -37,7 +37,7 @@ const Login = (props) => {
             })
     };
 
-    // Gives ability to change value of text inputs for username/password
+    // Gives ability to change value of text inputs for email/password
     const textChange = (name, value) => {
         validate(name, value)
         setLoginInfo({
@@ -46,8 +46,8 @@ const Login = (props) => {
         })
     };
 
-    // const postInfo = (person) => {
-    //     axios.post(`https://reqres.in/api/users`, person)
+    // const postInfo = (user) => {
+    //     axios.post(`https://reqres.in/api/users`, user)
     //     .then((res) => {
     //         console.log(res.data)
     //         setCurrentUsers([...currentUsers, res.data])
@@ -65,12 +65,12 @@ const Login = (props) => {
     const onSubmit = (event) => {
         event.preventDefault()
         const user = {
-            username: loginInfo.username,
+            email: loginInfo.email,
             password: loginInfo.password
         }
-        // postInfo(person)
+        // postInfo(user)
         setLoginInfo({
-            username: '',
+            email: '',
             password: ''
         })
     };
@@ -88,17 +88,17 @@ const Login = (props) => {
         <div>
             <header>Login</header>
             <form onSubmit={onSubmit}>
-                <label>Username: 
+                <label>Email: 
                     <input
-                        id='username'
+                        id='email'
                         type='text'
-                        value={loginInfo.username}
-                        name='username'
-                        placeholder='Username'
+                        value={loginInfo.email}
+                        name='email'
+                        placeholder='Email'
                         onChange={onChange}
                     />
                 </label>
-                <label>
+                <label>Password: 
                     <input
                         id='password'
                         type='password'
@@ -113,7 +113,7 @@ const Login = (props) => {
                 <button disabeled={disabled}>Login</button>
             </form>
                 {/* errors for attempting to log in with false info */}
-                <p>{error.username}</p>
+                <p>{error.email}</p>
                 <p>{error.password}</p>
         </div>
     )
