@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Form(props) {
-    const { values, change, errors, submit } = props;
+    const { values, change, errors, disabled, submit } = props;
 
     const onSubmit = (evt) => {
         evt.preventDefault();
@@ -65,7 +65,7 @@ return (
 
     <br />
 
-    <button type="submit"> Submit </button>
+    <button disabled={disabled}> Submit </button>
 
     <div className="errors">
         <div>{errors.name}</div>

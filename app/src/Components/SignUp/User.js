@@ -20,12 +20,14 @@ const initialFormErrors = {
 };
 
 const initialUsers = [];
+const initialDisabled = true;
 
 export default function UserSignUp() {
 
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUsers = () => {
     axios.get(`https://reqres.in/api/users`)
@@ -89,11 +91,17 @@ export default function UserSignUp() {
     getUsers();
   }, []);
 
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
+
 return (
   <div>
 
     <header>
-      <h1>User Sign Up</h1>
+      <h1>Client Sign Up</h1>
     </header>
 
   <Form 
@@ -101,6 +109,7 @@ return (
   change={inputChange}
   submit={formSubmit}
   errors={formErrors}
+  disabled={disabled}
   />
 
   {users.map((userItem) => {
