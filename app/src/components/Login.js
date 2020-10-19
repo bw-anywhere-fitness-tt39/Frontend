@@ -38,7 +38,13 @@ const Login = (props) => {
             })
     }
 
-    //
+    const change = (name, value) => {
+        validate(name, value)
+        setLoginInfo({
+            ...loginInfo,
+            [name]: value
+        })
+    }
 
 
 
