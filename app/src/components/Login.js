@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as yup from 'yup'
-
-import React from 'react'
+import schema from './FormSchema'
 
 const Login = (props) => {
 
@@ -13,7 +12,7 @@ const Login = (props) => {
     });
 
     const [ disabled, setDisabled ] = useState(false);
-    // const [ currentUsers, setCurrentUsers ] = useState([]);
+    const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         username: '',
         password: ''
@@ -47,6 +46,17 @@ const Login = (props) => {
         })
     };
 
+    // const postInfo = (person) => {
+    //     axios.post(`https://reqres.in/api/users`, person)
+    //     .then((res) => {
+    //         console.log(res.data)
+    //         setCurrentUsers([...currentUsers, res.data])
+    //     })
+    //     .catch((err) => {
+    //         console.log(err)
+    //     })
+    // }
+
     const onChange = (event) => {
         textChange(event.target.name)
     };
@@ -58,6 +68,7 @@ const Login = (props) => {
             username: loginInfo.username,
             password: loginInfo.password
         }
+        // postInfo(person)
         setLoginInfo({
             username: '',
             password: ''
@@ -75,7 +86,8 @@ const Login = (props) => {
 
     return (
         <div>
-            <form>
+            <header>Login</header>
+            <form onSubmit={onSubmit}>
                 <label>Username: 
                     <input
                         id='username'
@@ -97,7 +109,7 @@ const Login = (props) => {
                         onChange={onChange}
                     />
                 </label>
-                {/* disabled until right amount of characters are typed in */}
+                {/* disabled until limitations are met */}
                 <button disabeled={disabled}>Login</button>
             </form>
                 {/* errors for attempting to log in with false info */}
