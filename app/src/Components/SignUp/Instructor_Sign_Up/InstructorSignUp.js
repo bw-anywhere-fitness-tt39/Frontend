@@ -109,10 +109,6 @@ export default function InstructorSignUp() {
 return (
   <div>
 
-    <header>
-      <h1>Anywhere Fitness</h1>
-    </header>
-
   <StyledForm>
     <h3>Instructor Sign Up</h3>
 
