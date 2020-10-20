@@ -1,12 +1,12 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import InstructorSignUp from './Components/SignUp/Instructor_Sign_Up/InstructorSignUp';
-import UserSignUp from './Components/SignUp/User_Sign_Up/UserSignUp';
+import Instructor_Sign_Up from './components/SignUp/Instructor_Sign_Up/InstructorSignUp';
+import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp';
 
 function App() {
   return (
     <div className="App">
+      <h1>Hello World</h1>
       {/* <UserSignUp /> */}
       {/* <InstructorSignUp /> */}
     </div>
