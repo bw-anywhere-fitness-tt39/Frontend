@@ -1,8 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
-// import Styles from '../theme/Styles'
+import styled from 'styled-components';
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+
+
+// Styled Components Start //
+// const keyFrames = keyframes`
+//     100% {
+//         opacity: 1;
+//     }
+// `
+const StyledImg = styled.div`
+    background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+    min-height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+`
+
+const StyledLogin = styled.div`
+    color: #ffffff;
+    background-color: #242943;
+    padding: 3%;
+    margin: 30%;
+    border-radius: 20px;
+`
+
+const StyledInputs = styled.input`
+    margin: 5% 2%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 10px;
+    ::placeholder {
+        margin-bottom: 20px;
+        position: center;
+        top: -10px;
+        padding-left: 10px;
+    }
+`
+
+const StyledLoginButton = styled.button`
+    border-radius: 10px;
+    padding: 2% 5%;
+    
+
+`
+
+// Styled Components End //
 
 const Login = (props) => {
 
@@ -13,7 +62,7 @@ const Login = (props) => {
     });
 
     const [ disabled, setDisabled ] = useState(false);
-    const [ currentUsers, setCurrentUsers ] = useState([]);
+    // const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         email: '',
         password: ''
@@ -86,14 +135,14 @@ const Login = (props) => {
 
 
     return (
-        <div>
-            {/* <Styles> */}
+        <StyledImg>
+            <StyledLogin>
             <header>
                 <h1>Login</h1>
             </header>
             <form onSubmit={onSubmit}>
                 <label>Email: 
-                    <input
+                    <StyledInputs
                         id='email'
                         type='text'
                         value={loginInfo.email}
@@ -103,7 +152,7 @@ const Login = (props) => {
                     />
                 </label>
                 <label>Password: 
-                    <input
+                    <StyledInputs
                         id='password'
                         type='password'
                         value={loginInfo.password}
@@ -115,13 +164,13 @@ const Login = (props) => {
                 </label>
                 {/* disabled until limitations are met */}
                 <br></br>
-                <button disabeled={disabled}>Login</button>
+                <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
             </form>
             {/* errors for attempting to log in with false info */}
             <p>{error.email}</p>
             <p>{error.password}</p>
-        {/* </Styles> */}
-        </div>
+            </StyledLogin>
+        </StyledImg>
     )
 }
 
