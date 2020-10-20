@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
+// import Styles from '../theme/Styles'
 
 const Login = (props) => {
 
@@ -86,7 +87,10 @@ const Login = (props) => {
 
     return (
         <div>
-            <header>Login</header>
+            {/* <Styles> */}
+            <header>
+                <h1>Login</h1>
+            </header>
             <form onSubmit={onSubmit}>
                 <label>Email: 
                     <input
@@ -110,11 +114,13 @@ const Login = (props) => {
                     />
                 </label>
                 {/* disabled until limitations are met */}
+                <br></br>
                 <button disabeled={disabled}>Login</button>
             </form>
-                {/* errors for attempting to log in with false info */}
-                <p>{error.email}</p>
-                <p>{error.password}</p>
+            {/* errors for attempting to log in with false info */}
+            <p>{error.email}</p>
+            <p>{error.password}</p>
+        {/* </Styles> */}
         </div>
     )
 }
