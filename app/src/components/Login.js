@@ -4,16 +4,8 @@ import * as yup from 'yup';
 import schema from './FormSchema';
 import styled from 'styled-components';
 import { Spring } from 'react-spring/renderprops';
-// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
-
 
 // Styled Components Start //
-// const keyFrames = keyframes`
-//     100% {
-//         opacity: 1;
-//     }
-// `
-
 
 const StyledImg = styled.div`
     background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
@@ -23,20 +15,18 @@ const StyledImg = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 100vh;
-    padding: 2%;
+    padding: 20%;
 `
 
 const StyledLogin = styled.div`
     color: #ffffff;
     background-color: #242943;
     padding: 3%;
-    margin: 10% 25%;
     border-radius: 20px;
 `
 
 const StyledInputs = styled.input`
-    margin: 5% 2%;
+    margin: 1%;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.6);
     border: none;
@@ -155,11 +145,12 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                    <h1>Welcome Back</h1>
+                    <h1>WELCOME BACK</h1>
                     <h2>Login</h2>
                     <form onSubmit={onSubmit}>
                         <label>
-                            <h3 className='emailText'>Email: </h3>
+                            <h3>Email: </h3>
+                        </label>
                             <StyledInputs
                                 id='email'
                                 type='text'
@@ -168,9 +159,9 @@ const Login = (props) => {
                                 placeholder='Type email here...'
                                 onChange={onChange}
                             />
-                        </label>
                         <label>
-                            <h3 className='passwordText'>Password: </h3>
+                            <h3>Password: </h3>
+                        </label>
                             <StyledInputs
                                 id='password'
                                 type='password'
@@ -180,7 +171,6 @@ const Login = (props) => {
                                 placeholder='Type password here...'
                                 onChange={onChange}
                             />
-                        </label>
                     </form>
                         {/* disabled until limitations are met */}
                     <br></br>
