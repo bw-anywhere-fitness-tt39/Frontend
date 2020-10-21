@@ -10,6 +10,9 @@ export default Yup.object().shape({
     .string()
     .email("Must be a valid email address.")
     .required("Must include email address."),
+  username: Yup
+    .string()
+    .required("Username is required"),
   code: Yup
     .string()
     .required("Authentication Code is Required")
