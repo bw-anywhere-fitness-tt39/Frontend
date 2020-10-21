@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from './User_Form';
-import Member from './UserInfo';
+// import Member from './UserInfo';
 import * as yup from 'yup';
 import axios from 'axios';
 import schema from './UserSchema';
@@ -15,8 +15,9 @@ background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 140vh;
+    height: 122vh;
     padding: 2%;
+    text-align: center;
 `
 
 
@@ -24,14 +25,18 @@ background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2
 const initialFormValues = {
   name: "",
   email: "",
+  username: "",
   password: "",
+  role: "",
   terms: false,
 };
 
 const initialFormErrors = {
   name: "",
   email: "",
+  username: "",
   password: "",
+  role: "",
   terms: "",
 };
 
@@ -46,9 +51,9 @@ export default function UserSignUp() {
   const [disabled, setDisabled] = useState(initialDisabled);
 
   const getUsers = () => {
-    axios.get(`https://reqres.in/api/users`)
+    axios.get(`https://anytime-fitness.herokuapp.com`)
       .then((res) => {
-        setUsers(res.results.data);
+        setUsers(res.data);
       })
       .catch((err) => {
         debugger
@@ -57,7 +62,7 @@ export default function UserSignUp() {
   };
 
   const postNewUser = (newUser) => {
-    axios.post(`https://reqres.in/api/users`, newUser)
+    axios.post(`https://anytime-fitness.herokuapp.com`, newUser)
       .then((res) => {
         setUsers([res.data, ...users]);
         setFormValues(initialFormValues);
@@ -98,7 +103,9 @@ export default function UserSignUp() {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
+      username: formValues.username.trim(),
       password: formValues.password.trim(),
+      role: formValues.role.trim(),
     };
     postNewUser(newUser);
   };
@@ -127,9 +134,9 @@ return (
   />
 </StyledForm>
 
-  {users.map((userItem) => {
+  {/* {users.map((userItem) => {
         return <Member key={userItem.id} details={userItem} />;
-    })}
+    })} */}
 
   </div>
   );
