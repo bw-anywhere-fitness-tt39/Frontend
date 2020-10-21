@@ -1,4 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledBox = styled.div`
+    color: #ffffff;
+    background-color: #242943;
+    padding: 3%;
+    margin: 10% 25%;
+    border-radius: 20px;
+`
+
+const StyledButton = styled.button`
+    border-radius: 10px;
+    padding: 2% 7%;
+    font-size: 1rem;
+    font-family: 'Helvetica';
+
+`
+
+const styledInput = styled.input`
+
+margin: 5% 2%;
+height: 40px;
+background-color: rgba(255, 255, 255, 0.6);
+border: none;
+border-radius: 10px;
+outline: none;
+::placeholder {
+    margin-bottom: 10%;
+    position: center;
+    top: -10px;
+    color: #242943;
+    font-family: 'Helvetica';
+}
+:focus {
+    background-color: #37a6cb;
+    color: #ffff;
+}
+
+`
 
 export default function Form(props) {
     const { values, change, errors, disabled, submit } = props;
@@ -15,7 +54,9 @@ export default function Form(props) {
     };
 
 return (
-<form onSubmit={onSubmit}>
+    <StyledBox>
+        <h2>Sign Up</h2>
+    <form onSubmit={onSubmit}>
     <label>
         Name:
         <input
@@ -88,7 +129,7 @@ return (
 
     <br />
 
-    <button disabled={disabled}> Submit </button>
+    <StyledButton disabled={disabled}> Submit </StyledButton>
 
     <div className="errors">
         <div>{errors.name}</div>
@@ -100,5 +141,6 @@ return (
     </div>
 
 </form>
+</StyledBox>
 )
 }

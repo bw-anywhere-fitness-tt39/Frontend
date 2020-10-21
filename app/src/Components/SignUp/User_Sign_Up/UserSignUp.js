@@ -8,8 +8,15 @@ import styled from 'styled-components';
 
 const StyledForm = styled.div`
 
-color: black;
-
+background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+    background-attachment: fixed;
+    min-height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 140vh;
+    padding: 2%;
 `
 
 
@@ -110,7 +117,6 @@ return (
   <div>
 
   <StyledForm>
-    <h3>Sign Up</h3>
 
   <Form 
   values={formValues}
