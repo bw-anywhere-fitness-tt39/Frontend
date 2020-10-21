@@ -11,7 +11,6 @@ function App() {
       {/* <UserSignUp /> */}
       {/* <InstructorSignUp /> */}
       <Login />
-
     </div>
   );
 }
