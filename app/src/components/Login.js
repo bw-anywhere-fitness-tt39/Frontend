@@ -1,8 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
-// import Styles from '../theme/Styles'
+import styled from 'styled-components';
+import { Spring } from 'react-spring/renderprops';
+// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+
+
+// Styled Components Start //
+// const keyFrames = keyframes`
+//     100% {
+//         opacity: 1;
+//     }
+// `
+
+
+const StyledImg = styled.div`
+    background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+    background-attachment: fixed;
+    min-height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    padding: 2%;
+`
+
+const StyledLogin = styled.div`
+    color: #ffffff;
+    background-color: #242943;
+    padding: 3%;
+    margin: 10% 25%;
+    border-radius: 20px;
+`
+
+const StyledInputs = styled.input`
+    margin: 5% 2%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    ::placeholder {
+        margin-bottom: 10%;
+        position: center;
+        top: -10px;
+        color: #242943;
+        font-family: 'Helvetica';
+    }
+    :focus {
+        background-color: #37a6cb;
+        color: #ffff;
+    }
+`
+
+const StyledLoginButton = styled.button`
+    border-radius: 10px;
+    padding: 2% 7%;
+    font-size: 1rem;
+    font-family: 'Helvetica';
+
+`
+
+// Styled Components End //
 
 const Login = (props) => {
 
@@ -13,7 +74,7 @@ const Login = (props) => {
     });
 
     const [ disabled, setDisabled ] = useState(false);
-    const [ currentUsers, setCurrentUsers ] = useState([]);
+    // const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         email: '',
         password: ''
@@ -86,42 +147,50 @@ const Login = (props) => {
 
 
     return (
-        <div>
-            {/* <Styles> */}
-            <header>
-                <h1>Login</h1>
-            </header>
-            <form onSubmit={onSubmit}>
-                <label>Email: 
-                    <input
-                        id='email'
-                        type='text'
-                        value={loginInfo.email}
-                        name='email'
-                        placeholder='Email'
-                        onChange={onChange}
-                    />
-                </label>
-                <label>Password: 
-                    <input
-                        id='password'
-                        type='password'
-                        value={loginInfo.password}
-                        name='password'
-                        password='password'
-                        placeholder='Password'
-                        onChange={onChange}
-                    />
-                </label>
-                {/* disabled until limitations are met */}
-                <br></br>
-                <button disabeled={disabled}>Login</button>
-            </form>
-            {/* errors for attempting to log in with false info */}
-            <p>{error.email}</p>
-            <p>{error.password}</p>
-        {/* </Styles> */}
-        </div>
+        <StyledImg>
+        <Spring
+            from={{ opacity: 0, marginTop: - 500 }}
+            to={{ opacity: 1, marginTop: 0 }}
+        >
+            {props => (
+                <div style={props}>
+                    <StyledLogin>
+                    <h1>ANYTIME FITNESS</h1>
+                    <h2>Login</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>
+                            <h3 className='emailText'>Email: </h3>
+                            <StyledInputs
+                                id='email'
+                                type='text'
+                                value={loginInfo.email}
+                                name='email'
+                                placeholder='Type email here...'
+                                onChange={onChange}
+                            />
+                            <h3 className='passwordText'>Password: </h3>
+                            <StyledInputs
+                                id='password'
+                                type='password'
+                                value={loginInfo.password}
+                                name='password'
+                                password='password'
+                                placeholder='Type password here...'
+                                onChange={onChange}
+                            />
+                        </label>
+                        {/* disabled until limitations are met */}
+                        <br></br>
+                        <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
+                    </form>
+                    {/* errors for attempting to log in with false info */}
+                    <p>{error.email}</p>
+                    <p>{error.password}</p>
+                    </StyledLogin>
+                </div>
+            )}
+        </Spring>
+        </StyledImg>
     )
 }
 
