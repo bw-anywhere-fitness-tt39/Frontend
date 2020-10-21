@@ -16,6 +16,8 @@ h1 {
   font-family: 'Sans Source Pro';
   letter-spacing: 10px;
   font-size: 2.5rem;
+  padding: 5%;
+  margin: 0;
 }
 
 h2 {
@@ -54,6 +56,25 @@ button:hover {
   color: #ffff;
   transition: 0.4s ease-in-out;
   border: 2px solid #37a6cb;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  background-color: #242943;
+  border-radius: 10px;
+  border: 2px solid #242943;
+  transition: 0.4s ease-in-out;
+  color: #ffff;
+  padding: 1% 3%;
+  margin: 2%;
+}
+
+a:hover{
+  background-color: #37a6cb;
+  color: #ffff;
+  transition: 0.4s ease-in-out;
+  border: 2px solid #242943;
   text-decoration: none;
 }
 

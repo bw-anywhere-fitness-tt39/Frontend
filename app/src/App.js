@@ -6,23 +6,25 @@ import SignUp from './Components/SignUp/Sign_Up_Page'
 import styled from 'styled-components';
 
 const StyledApp = styled.div`
-
-color: black;
-text-align: center;
+  color: #242943;
+  text-align: center;
+  background-color: #37a6cb;
 
 `
-
+const StyledAppNav = styled.nav`
+  text-decoration: none;
+  padding-bottom: 5%;
+`
 
 function App() {
   return (
     <StyledApp>
-      <h1>Anywhere Fitness</h1>
+      <h1>ANYWHERE FITNESS</h1>
 
-      <nav>
+      <StyledAppNav>
         <Link to="/">Login</Link>
-        <br />
         <Link to="/sign-up">Sign Up</Link>
-      </nav>
+      </StyledAppNav>
 
       <Switch>
         <Route exact path={"/"}>

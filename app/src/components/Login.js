@@ -155,7 +155,7 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                    <h1>ANYTIME FITNESS</h1>
+                    <h1>ANYWHERE FITNESS</h1>
                     <h2>Login</h2>
                     <form onSubmit={onSubmit}>
                         <label>
