@@ -89,6 +89,7 @@ const Login = (props) => {
     });
 
     const [ disabled, setDisabled ] = useState(false);
+    // v In case for get.axios request v //
     // const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         email: '',
@@ -124,7 +125,7 @@ const Login = (props) => {
     };
 
     // const postInfo = (user) => {
-    //     axios.post(`https://reqres.in/api/users`, user)
+    //     axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
     //     .then((res) => {
     //         console.log(res.data)
     //         setCurrentUsers([...currentUsers, res.data])
