@@ -109,10 +109,6 @@ export default function UserSignUp() {
 return (
   <div>
 
-    <header>
-      <h1>Anywhere Fitness</h1>
-    </header>
-
   <StyledForm>
     <h3>User Sign Up</h3>
 
