@@ -19,8 +19,7 @@ const StyledAppNav = styled.nav`
 function App() {
   return (
     <StyledApp>
-      <h1>ANYWHERE FITNESS</h1>
-
+      <h1 class="headerTitle">ANYWHERE FITNESS</h1>
       <StyledAppNav>
         <Link to="/">Login</Link>
         <Link to="/sign-up">Sign Up</Link>

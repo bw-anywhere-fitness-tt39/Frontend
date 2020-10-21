@@ -155,7 +155,7 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                    <h1>ANYWHERE FITNESS</h1>
+                    <h1>Welcome Back</h1>
                     <h2>Login</h2>
                     <form onSubmit={onSubmit}>
                         <label>
@@ -168,6 +168,8 @@ const Login = (props) => {
                                 placeholder='Type email here...'
                                 onChange={onChange}
                             />
+                        </label>
+                        <label>
                             <h3 className='passwordText'>Password: </h3>
                             <StyledInputs
                                 id='password'
@@ -179,10 +181,10 @@ const Login = (props) => {
                                 onChange={onChange}
                             />
                         </label>
-                        {/* disabled until limitations are met */}
-                        <br></br>
-                        <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
                     </form>
+                        {/* disabled until limitations are met */}
+                    <br></br>
+                    <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
                     {/* errors for attempting to log in with false info */}
                     <p>{error.email}</p>
                     <p>{error.password}</p>
