@@ -58,7 +58,7 @@ const StyledInputs = styled.input`
 const StyledLoginButton = styled.button`
     border-radius: 10px;
     padding: 2% 7%;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-family: 'Helvetica';
 
 `
@@ -165,7 +165,7 @@ const Login = (props) => {
                                 type='text'
                                 value={loginInfo.email}
                                 name='email'
-                                placeholder='Email'
+                                placeholder='Type email here...'
                                 onChange={onChange}
                             />
                             <h3 className='passwordText'>Password: </h3>
@@ -175,7 +175,7 @@ const Login = (props) => {
                                 value={loginInfo.password}
                                 name='password'
                                 password='password'
-                                placeholder='Password'
+                                placeholder='Type password here...'
                                 onChange={onChange}
                             />
                         </label>
