@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom";
-import Login from './Components/Login'
+import Login from './components/Login'
 import styled from 'styled-components';
-import UserSignUp from './Components/SignUp/User_Sign_Up/UserSignUp'
+import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp'
 
 const StyledApp = styled.div`
   color: #242943;
