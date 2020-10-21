@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom";
-import Login from './components/Login'
+import Login from './components/Login';
 import SignUp from './components/SignUp/Sign_Up_Page'
 import styled from 'styled-components';
+
+// Styled Components Start //
 
 const StyledApp = styled.div`
   color: #242943;
@@ -21,8 +23,15 @@ const StyledAppCopyright = styled.p`
   line-height: normal;
   padding: 2%;
   font-family: 'Sans Source Pro';
-  margin: 0;
+  margin: auto;
+
+  @media (max-width: 375px) {
+    padding: 5%;
+    width: 80%;
+  }
 `
+
+// Styled Components End //
 
 function App() {
   return (
@@ -41,7 +50,7 @@ function App() {
           <SignUp />
         </Route>
       </Switch>
-    <StyledAppCopyright>Created by Sam Lalli, Rees Harper, and Jennifer Kramer
+    <StyledAppCopyright>Created by Sam Lalli, Rees Harper, & Jennifer Kramer
       <br/>
       <br/>
       Anywhere Fitness © 2020

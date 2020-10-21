@@ -15,7 +15,16 @@ const StyledImg = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    padding: 20%;
+    padding: 10%;
+
+    @media (max-width: 800px){
+        padding: 8%;
+    }
+
+    @media (max-width: 375px) {
+        margin: 0;
+        padding: 0;
+    }
 `
 
 const StyledLogin = styled.div`
@@ -23,6 +32,14 @@ const StyledLogin = styled.div`
     background-color: #242943;
     padding: 3%;
     border-radius: 20px;
+    width: 80%;
+    margin: auto;
+
+    @media (max-width: 375px) {
+        padding: 4%;
+        border-radius: 0px;
+        width: 100%;
+    }
 `
 
 const StyledInputs = styled.input`
@@ -43,6 +60,11 @@ const StyledInputs = styled.input`
         background-color: #37a6cb;
         color: #ffff;
     }
+
+    @media (max-width: 375px) {
+        width: 70%
+
+    }
 `
 
 const StyledLoginButton = styled.button`
@@ -51,6 +73,9 @@ const StyledLoginButton = styled.button`
     font-size: 1rem;
     font-family: 'Helvetica';
 
+    @media (max-width: 375px) {
+        padding: 4% 8%;
+    }
 `
 
 // Styled Components End //
@@ -145,39 +170,39 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                    <h1>WELCOME BACK</h1>
-                    <h2>Login</h2>
-                    <form onSubmit={onSubmit}>
-                        <label>
-                            <h3>Email: </h3>
-                        </label>
-                            <StyledInputs
-                                id='email'
-                                type='text'
-                                value={loginInfo.email}
-                                name='email'
-                                placeholder='Type email here...'
-                                onChange={onChange}
-                            />
-                        <label>
-                            <h3>Password: </h3>
-                        </label>
-                            <StyledInputs
-                                id='password'
-                                type='password'
-                                value={loginInfo.password}
-                                name='password'
-                                password='password'
-                                placeholder='Type password here...'
-                                onChange={onChange}
-                            />
-                    </form>
-                        {/* disabled until limitations are met */}
-                    <br></br>
-                    <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
-                    {/* errors for attempting to log in with false info */}
-                    <p>{error.email}</p>
-                    <p>{error.password}</p>
+                        <h1>WELCOME BACK</h1>
+                        <h2>Login</h2>
+                        <form onSubmit={onSubmit}>
+                            <label>
+                                <h3>Email: </h3>
+                            </label>
+                                <StyledInputs
+                                    id='email'
+                                    type='text'
+                                    value={loginInfo.email}
+                                    name='email'
+                                    placeholder='Type email here...'
+                                    onChange={onChange}
+                                />
+                            <label>
+                                <h3>Password: </h3>
+                            </label>
+                                <StyledInputs
+                                    id='password'
+                                    type='password'
+                                    value={loginInfo.password}
+                                    name='password'
+                                    password='password'
+                                    placeholder='Type password here...'
+                                    onChange={onChange}
+                                />
+                        </form>
+                            {/* disabled until limitations are met */}
+                        <br></br>
+                        <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
+                        {/* errors for attempting to log in with false info */}
+                        <p>{error.email}</p>
+                        <p>{error.password}</p>
                     </StyledLogin>
                 </div>
             )}
