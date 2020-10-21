@@ -7,6 +7,12 @@ const StyledBox = styled.div`
     padding: 3%;
     margin: 10% 25%;
     border-radius: 20px;
+
+    h2 {
+        margin-top: -1%;
+        margin-bottom: 5%;
+        font-size: 2.5rem;
+    }
 `
 
 const StyledButton = styled.button`
@@ -17,9 +23,9 @@ const StyledButton = styled.button`
 
 `
 
-const styledInput = styled.input`
+const StyledInput = styled.input`
 
-margin: 5% 2%;
+margin: 2%;
 height: 40px;
 background-color: rgba(255, 255, 255, 0.6);
 border: none;
@@ -39,6 +45,28 @@ outline: none;
 
 `
 
+const StyledLabel = styled.label`
+
+    margin: -2%;
+
+`
+
+const StyledDrop = styled.select`
+
+    margin: 1%;
+    border: none;
+    border-radius: 20px;
+    width: 15%;
+    height: 2.2vh;
+
+`
+
+const StyledErrors = styled.div`
+
+    margin-top: 5%;
+
+`
+
 export default function Form(props) {
     const { values, change, errors, disabled, submit } = props;
 
@@ -55,90 +83,93 @@ export default function Form(props) {
 
 return (
     <StyledBox>
+
         <h2>Sign Up</h2>
+
     <form onSubmit={onSubmit}>
-    <label>
+
+    <StyledLabel>
         Name:
-        <input
+        <StyledInput
         type="text"
         name="name"
         value={values.name}
         onChange={onChange} 
         />
-    </label>
+    </StyledLabel>
 
     <br />
 
-    <label>
+    <StyledLabel>
         Email:
-        <input
+        <StyledInput
         type="email"
         name="email" 
         value={values.email}
         onChange={onChange}
         />
-    </label>
+    </StyledLabel>
 
     <br />
 
-    <label>
+    <StyledLabel>
         Username:
-        <input
+        <StyledInput
         type="text"
         name="username"
         value={values.username}
         onChange={onChange} 
         />
-    </label>
+    </StyledLabel>
 
     <br />
 
-    <label>
+    <StyledLabel>
         Password:
-        <input
+        <StyledInput
         type="text"
         name="password" 
         value={values.password}
         onChange={onChange}
         />
-    </label>
+    </StyledLabel>
 
     <br />
 
-    <label>
+    <StyledLabel>
         Role:
-        <select onChange={onChange} value={values.role} name="role">
+        <StyledDrop onChange={onChange} value={values.role} name="role">
             <option value="">-Select a role-</option>
             <option value="client">Client</option>
             <option value="instructor">Instructor</option>
-        </select>
-    </label>
+        </StyledDrop>
+    </StyledLabel>
 
     <br />
 
-    <label>
+    <StyledLabel>
         Agree to Terms and Conditions 
-        <input 
+        <StyledInput 
         type="checkbox" 
         id="termsConditions" 
         name="terms" 
         value={values.terms} 
         onChange={onChange}
         />
-    </label>
+    </StyledLabel>
 
     <br />
 
     <StyledButton disabled={disabled}> Submit </StyledButton>
 
-    <div className="errors">
+    <StyledErrors>
         <div>{errors.name}</div>
         <div>{errors.email}</div>
         <div>{errors.password}</div>
         <div>{errors.terms}</div>
         <div>{errors.username}</div>
         <div>{errors.role}</div>
-    </div>
+    </StyledErrors>
 
 </form>
 </StyledBox>
