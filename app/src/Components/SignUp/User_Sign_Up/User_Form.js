@@ -41,6 +41,18 @@ return (
     <br />
 
     <label>
+        Username:
+        <input
+        type="text"
+        name="username"
+        value={values.username}
+        onChange={onChange} 
+        />
+    </label>
+
+    <br />
+
+    <label>
         Password:
         <input
         type="text"
@@ -48,6 +60,17 @@ return (
         value={values.password}
         onChange={onChange}
         />
+    </label>
+
+    <br />
+
+    <label>
+        Role:
+        <select onChange={onChange} value={values.role} name="role">
+            <option value="">-Select a role-</option>
+            <option value="client">Client</option>
+            <option value="instructor">Instructor</option>
+        </select>
     </label>
 
     <br />
@@ -72,6 +95,8 @@ return (
         <div>{errors.email}</div>
         <div>{errors.password}</div>
         <div>{errors.terms}</div>
+        <div>{errors.username}</div>
+        <div>{errors.role}</div>
     </div>
 
 </form>

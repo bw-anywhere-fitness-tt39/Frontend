@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom";
 import Login from './Components/Login'
-import SignUp from './Components/SignUp/Sign_Up_Page'
 import styled from 'styled-components';
+import UserSignUp from './Components/SignUp/User_Sign_Up/UserSignUp'
 
 const StyledApp = styled.div`
   color: #242943;
@@ -31,7 +31,7 @@ function App() {
           <Login />
         </Route>
         <Route path={"/sign-up"}>
-          <SignUp />
+          <UserSignUp />
         </Route>
       </Switch>
 

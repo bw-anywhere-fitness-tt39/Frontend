@@ -41,6 +41,18 @@ return (
     <br />
 
     <label>
+        Username:
+        <input
+        type="text"
+        name="username"
+        value={values.username}
+        onChange={onChange} 
+        />
+    </label>
+
+    <br />
+
+    <label>
         Authentication Code:
         <input
         type="text"
@@ -72,6 +84,7 @@ return (
         <div>{errors.email}</div>
         <div>{errors.code}</div>
         <div>{errors.terms}</div>
+        <div>{errors.username}</div>
     </div>
 
 </form>
