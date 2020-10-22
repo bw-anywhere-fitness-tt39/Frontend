@@ -4,6 +4,8 @@ import { Route, Link, Switch } from "react-router-dom";
 import Login from './components/Login'
 import styled from 'styled-components';
 import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp'
+import PrivateRoute from './components/PrivateRoute';
+import ProtectedPage from './components/ProtectedPage';
 
 const StyledApp = styled.div`
   color: #242943;
@@ -33,6 +35,7 @@ function App() {
         <Route path={"/sign-up"}>
           <UserSignUp />
         </Route>
+        <PrivateRoute path={'/protected-page'} component={ProtectedPage} />
       </Switch>
 
     </StyledApp>

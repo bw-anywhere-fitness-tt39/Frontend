@@ -127,7 +127,7 @@ return (
     <StyledLabel>
         Password:
         <StyledInput
-        type="text"
+        type="password"
         name="password" 
         value={values.password}
         onChange={onChange}

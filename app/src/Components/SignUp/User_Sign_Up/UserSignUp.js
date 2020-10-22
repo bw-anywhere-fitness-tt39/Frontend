@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Form from './User_Form';
-// import Member from './UserInfo';
 import * as yup from 'yup';
 import axios from 'axios';
 import schema from './UserSchema';
@@ -27,8 +26,8 @@ const initialFormValues = {
   email: "",
   username: "",
   password: "",
-  role: "",
   terms: false,
+  role: '',
 };
 
 const initialFormErrors = {
@@ -49,17 +48,6 @@ export default function UserSignUp() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-
-  const getUsers = () => {
-    axios.get(`https://anytime-fitness.herokuapp.com`)
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((err) => {
-        debugger
-        console.log(`GET ERROR`);
-      });
-  };
 
   const postNewUser = (newUser) => {
     axios.post(`https://anytime-fitness.herokuapp.com`, newUser)
@@ -110,9 +98,9 @@ export default function UserSignUp() {
     postNewUser(newUser);
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
