@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
 import styled from 'styled-components';
@@ -82,21 +82,21 @@ const StyledLoginButton = styled.button`
 
 const Login = (props) => {
 
-    // Setting state with an object of email and password
+    // Setting state with an object of username and password
     const [ loginInfo, setLoginInfo ] = useState({
-        email: '',
+        username: '',
         password: ''
     });
 
     const [ disabled, setDisabled ] = useState(false);
     // v In case for get.axios request v //
-    // const [ currentUsers, setCurrentUsers ] = useState([]);
+    const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
-        email: '',
+        username: '',
         password: ''
     });
 
-    // Validates using correct parameters in schema to email/password to right errors
+    // Validates using correct parameters in schema to username/password to right errors
     const validate = (name, value) => {
         yup
             .reach(schema, name)
@@ -115,7 +115,7 @@ const Login = (props) => {
             })
     };
 
-    // Gives ability to change value of text inputs for email/password
+    // Gives ability to change value of text inputs for username/password
     const textChange = (name, value) => {
         validate(name, value)
         setLoginInfo({
@@ -124,16 +124,16 @@ const Login = (props) => {
         })
     };
 
-    // const postInfo = (user) => {
-    //     axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
-    //     .then((res) => {
-    //         console.log(res.data)
-    //         setCurrentUsers([...currentUsers, res.data])
-    //     })
-    //     .catch((err) => {
-    //         console.log(err)
-    //     })
-    // }
+    const postInfo = (user) => {
+        axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
+        .then((res) => {
+            console.log(res.data)
+            setCurrentUsers([...currentUsers, res.data])
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     const onChange = (event) => {
         textChange(event.target.name)
@@ -143,12 +143,12 @@ const Login = (props) => {
     const onSubmit = (event) => {
         event.preventDefault()
         const user = {
-            email: loginInfo.email,
+            username: loginInfo.username,
             password: loginInfo.password
         }
-        // postInfo(user)
+        postInfo(user)
         setLoginInfo({
-            email: '',
+            username: '',
             password: ''
         })
     };
@@ -175,14 +175,14 @@ const Login = (props) => {
                         <h2>Login</h2>
                         <form onSubmit={onSubmit}>
                             <label>
-                                <h3>Email: </h3>
+                                <h3>Username: </h3>
                             </label>
                                 <StyledInputs
-                                    id='email'
+                                    id='username'
                                     type='text'
-                                    value={loginInfo.email}
-                                    name='email'
-                                    placeholder='Type email here...'
+                                    value={loginInfo.username}
+                                    name='username'
+                                    placeholder='Type your username here...'
                                     onChange={onChange}
                                 />
                             <label>
@@ -194,7 +194,7 @@ const Login = (props) => {
                                     value={loginInfo.password}
                                     name='password'
                                     password='password'
-                                    placeholder='Type password here...'
+                                    placeholder='Type your password here...'
                                     onChange={onChange}
                                 />
                         </form>
@@ -202,7 +202,7 @@ const Login = (props) => {
                         <br></br>
                         <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
                         {/* errors for attempting to log in with false info */}
-                        <p>{error.email}</p>
+                        <p>{error.username}</p>
                         <p>{error.password}</p>
                     </StyledLogin>
                 </div>
