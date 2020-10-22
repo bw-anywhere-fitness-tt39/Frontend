@@ -4,8 +4,8 @@ import * as yup from 'yup';
 import schema from './FormSchema';
 import styled from 'styled-components';
 import { Spring } from 'react-spring/renderprops';
-import { login } from '../state/appActions'
-import {useHistory} from 'react-router-dom'
+import { login } from '../state/appActions';
+import { useHistory } from 'react-router-dom';
 
 // Styled Components Start //
 
@@ -44,6 +44,39 @@ const StyledLogin = styled.div`
     }
 `
 
+const StyledWelcomeBack = styled.h1`
+    text-transform: none;
+    margin: 0;
+    opacity: 1;
+    animation: fadeIn ease-in 2s;
+    -webkit-animation: fadeIn ease-in 2s;
+
+    @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+`
+
 const StyledInputs = styled.input`
     margin: 1%;
     height: 40px;
@@ -65,7 +98,6 @@ const StyledInputs = styled.input`
 
     @media (max-width: 375px) {
         width: 70%
-
     }
 `
 
@@ -180,7 +212,7 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                        <h1>WELCOME BACK</h1>
+                        <StyledWelcomeBack>WELCOME BACK</StyledWelcomeBack>
                         <h2>Login</h2>
                         <form onSubmit={onSubmit}>
                             <label>
