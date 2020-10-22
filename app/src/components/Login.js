@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
 import styled from 'styled-components';
 import { Spring } from 'react-spring/renderprops';
+import { login } from '../state/appActions'
+import {useHistory} from 'react-router-dom'
 
 // Styled Components Start //
 
@@ -90,7 +92,7 @@ const Login = (props) => {
 
     const [ disabled, setDisabled ] = useState(false);
     // v In case for get.axios request v //
-    const [ currentUsers, setCurrentUsers ] = useState([]);
+    //const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
         username: '',
         password: ''
@@ -124,24 +126,31 @@ const Login = (props) => {
         })
     };
 
+    const history = useHistory()
+
     const postInfo = (user) => {
-        axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
-        .then((res) => {
-            console.log(res.data)
-            setCurrentUsers([...currentUsers, res.data])
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        login(user)
+        console.log(user)
+        history.push("/protected-page")
+
+        // axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
+        // .then((res) => {
+        //     console.log(res.data)
+        //     setCurrentUsers([...currentUsers, res.data])
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
     }
 
     const onChange = (event) => {
-        textChange(event.target.name)
+        textChange(event.target.name, event.target.value)
     };
 
     // gives Login button a click function
     const onSubmit = (event) => {
         event.preventDefault()
+        console.log("working")
         const user = {
             username: loginInfo.username,
             password: loginInfo.password
@@ -197,10 +206,10 @@ const Login = (props) => {
                                     placeholder='Type your password here...'
                                     onChange={onChange}
                                 />
+                                {/* disabled until limitations are met */}
+                                <br></br>
+                            <StyledLoginButton disabled={disabled} >Login</StyledLoginButton>
                         </form>
-                            {/* disabled until limitations are met */}
-                        <br></br>
-                        <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
                         {/* errors for attempting to log in with false info */}
                         <p>{error.username}</p>
                         <p>{error.password}</p>
