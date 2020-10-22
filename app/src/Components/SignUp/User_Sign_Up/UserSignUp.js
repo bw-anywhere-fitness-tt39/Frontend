@@ -50,7 +50,7 @@ export default function UserSignUp() {
   const [disabled, setDisabled] = useState(initialDisabled);
 
   const postNewUser = (newUser) => {
-    axios.post(`https://anytime-fitness.herokuapp.com`, newUser)
+    axios.post(`https://anytime-fitness.herokuapp.com/api/auth/register`, newUser)
       .then((res) => {
         setUsers([res.data, ...users]);
         setFormValues(initialFormValues);
