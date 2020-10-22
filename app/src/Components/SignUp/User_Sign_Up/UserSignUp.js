@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Form from './User_Form';
-import Member from './UserInfo';
+//import Member from './UserInfo';
 import * as yup from 'yup';
 import axios from 'axios';
 import schema from './UserSchema';
@@ -18,7 +18,9 @@ const initialFormValues = {
   name: "",
   email: "",
   password: "",
+  username: '',
   terms: false,
+  role: '',
 };
 
 const initialFormErrors = {
@@ -38,19 +40,19 @@ export default function UserSignUp() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  const getUsers = () => {
-    axios.get(`https://reqres.in/api/users`)
-      .then((res) => {
-        setUsers(res.results.data);
-      })
-      .catch((err) => {
-        debugger
-        console.log(`GET ERROR`);
-      });
-  };
+  // const getUsers = () => {
+  //   axios.get(`https://reqres.in/api/users`)
+  //     .then((res) => {
+  //       setUsers(res.results.data);
+  //     })
+  //     .catch((err) => {
+  //       debugger
+  //       console.log(`GET ERROR`);
+  //     });
+  // };
 
   const postNewUser = (newUser) => {
-    axios.post(`https://reqres.in/api/users`, newUser)
+    axios.post(`https://anytime-fitness.herokuapp.com/api/auth/register`, newUser)
       .then((res) => {
         setUsers([res.data, ...users]);
         setFormValues(initialFormValues);
@@ -92,13 +94,15 @@ export default function UserSignUp() {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+      username: formValues.username.trim(),
+      role: formValues.role.trim()
     };
     postNewUser(newUser);
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
@@ -121,9 +125,9 @@ return (
   />
 </StyledForm>
 
-  {users.map((userItem) => {
+  {/* {users.map((userItem) => {
         return <Member key={userItem.id} details={userItem} />;
-    })}
+    })} */}
 
   </div>
   );

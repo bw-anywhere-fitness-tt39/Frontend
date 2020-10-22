@@ -55,7 +55,7 @@ return (
     <label>
         Password:
         <input
-        type="text"
+        type="password"
         name="password" 
         value={values.password}
         onChange={onChange}
