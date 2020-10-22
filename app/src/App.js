@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom";
-import Login from './components/Login';
-import SignUp from './components/SignUp/Sign_Up_Page'
+import Login from './components/Login'
 import styled from 'styled-components';
+import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp'
+import PrivateRoute from './components/PrivateRoute';
+import ProtectedPage from './components/ProtectedPage';
 
 // Styled Components Start //
 
@@ -47,8 +49,9 @@ function App() {
           <Login />
         </Route>
         <Route path={"/sign-up"}>
-          <SignUp />
+          <UserSignUp />
         </Route>
+        <PrivateRoute path={'/protected-page'} component={ProtectedPage} />
       </Switch>
     <StyledAppCopyright>Created by Sam Lalli, Rees Harper, & Jennifer Kramer
       <br/>
