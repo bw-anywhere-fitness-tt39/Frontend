@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Route, Link, Switch } from "react-router-dom";
-import Login from './components/Login'
+import Login from './components/Login';
 import styled from 'styled-components';
-import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp'
+import UserSignUp from './components/SignUp/User_Sign_Up/UserSignUp';
 import PrivateRoute from './components/PrivateRoute';
 import ProtectedPage from './components/ProtectedPage';
 
@@ -13,7 +13,6 @@ const StyledApp = styled.div`
   color: #242943;
   text-align: center;
   background-color: #37a6cb;
-
 `
 const StyledAppNav = styled.nav`
   text-decoration: none;
@@ -53,13 +52,13 @@ function App() {
         </Route>
         <PrivateRoute path={'/protected-page'} component={ProtectedPage} />
       </Switch>
-    <StyledAppCopyright>Created by Sam Lalli, Rees Harper, & Jennifer Kramer
-      <br/>
-      <br/>
-      Anywhere Fitness © 2020
-      <br/>
-      All Rights Reserved
-    </StyledAppCopyright>
+      <StyledAppCopyright>Created by Sam Lalli, Rees Harper, & Jennifer Kramer
+        <br/>
+        <br/>
+        Anywhere Fitness © 2020
+        <br/>
+        All Rights Reserved
+      </StyledAppCopyright>
     </StyledApp>
   );
 }
