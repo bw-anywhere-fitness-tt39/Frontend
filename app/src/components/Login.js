@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import * as yup from 'yup';
 import schema from './FormSchema';
 import styled from 'styled-components';
 import { Spring } from 'react-spring/renderprops';
-// @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
-
 
 // Styled Components Start //
-// const keyFrames = keyframes`
-//     100% {
-//         opacity: 1;
-//     }
-// `
-
 
 const StyledImg = styled.div`
     background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
@@ -23,20 +15,35 @@ const StyledImg = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 100vh;
-    padding: 2%;
+    padding: 10%;
+
+    @media (max-width: 800px){
+        padding: 8%;
+    }
+
+    @media (max-width: 375px) {
+        margin: 0;
+        padding: 0;
+    }
 `
 
 const StyledLogin = styled.div`
     color: #ffffff;
     background-color: #242943;
     padding: 3%;
-    margin: 10% 25%;
     border-radius: 20px;
+    width: 80%;
+    margin: auto;
+
+    @media (max-width: 375px) {
+        padding: 4%;
+        border-radius: 0px;
+        width: 100%;
+    }
 `
 
 const StyledInputs = styled.input`
-    margin: 5% 2%;
+    margin: 1%;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.6);
     border: none;
@@ -53,6 +60,11 @@ const StyledInputs = styled.input`
         background-color: #37a6cb;
         color: #ffff;
     }
+
+    @media (max-width: 375px) {
+        width: 70%
+
+    }
 `
 
 const StyledLoginButton = styled.button`
@@ -61,26 +73,30 @@ const StyledLoginButton = styled.button`
     font-size: 1rem;
     font-family: 'Helvetica';
 
+    @media (max-width: 375px) {
+        padding: 4% 8%;
+    }
 `
 
 // Styled Components End //
 
 const Login = (props) => {
 
-    // Setting state with an object of email and password
+    // Setting state with an object of username and password
     const [ loginInfo, setLoginInfo ] = useState({
-        email: '',
+        username: '',
         password: ''
     });
 
     const [ disabled, setDisabled ] = useState(false);
-    // const [ currentUsers, setCurrentUsers ] = useState([]);
+    // v In case for get.axios request v //
+    const [ currentUsers, setCurrentUsers ] = useState([]);
     const [ error, setError ] = useState({
-        email: '',
+        username: '',
         password: ''
     });
 
-    // Validates using correct parameters in schema to email/password to right errors
+    // Validates using correct parameters in schema to username/password to right errors
     const validate = (name, value) => {
         yup
             .reach(schema, name)
@@ -99,7 +115,7 @@ const Login = (props) => {
             })
     };
 
-    // Gives ability to change value of text inputs for email/password
+    // Gives ability to change value of text inputs for username/password
     const textChange = (name, value) => {
         validate(name, value)
         setLoginInfo({
@@ -108,16 +124,16 @@ const Login = (props) => {
         })
     };
 
-    // const postInfo = (user) => {
-    //     axios.post(`https://reqres.in/api/users`, user)
-    //     .then((res) => {
-    //         console.log(res.data)
-    //         setCurrentUsers([...currentUsers, res.data])
-    //     })
-    //     .catch((err) => {
-    //         console.log(err)
-    //     })
-    // }
+    const postInfo = (user) => {
+        axios.post(`https://anytime-fitness.herokuapp.com/api/auth/login`, user)
+        .then((res) => {
+            console.log(res.data)
+            setCurrentUsers([...currentUsers, res.data])
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
     const onChange = (event) => {
         textChange(event.target.name)
@@ -127,12 +143,12 @@ const Login = (props) => {
     const onSubmit = (event) => {
         event.preventDefault()
         const user = {
-            email: loginInfo.email,
+            username: loginInfo.username,
             password: loginInfo.password
         }
-        // postInfo(user)
+        postInfo(user)
         setLoginInfo({
-            email: '',
+            username: '',
             password: ''
         })
     };
@@ -155,37 +171,39 @@ const Login = (props) => {
             {props => (
                 <div style={props}>
                     <StyledLogin>
-                    <h1>ANYWHERE FITNESS</h1>
-                    <h2>Login</h2>
-                    <form onSubmit={onSubmit}>
-                        <label>
-                            <h3 className='emailText'>Email: </h3>
-                            <StyledInputs
-                                id='email'
-                                type='text'
-                                value={loginInfo.email}
-                                name='email'
-                                placeholder='Type email here...'
-                                onChange={onChange}
-                            />
-                            <h3 className='passwordText'>Password: </h3>
-                            <StyledInputs
-                                id='password'
-                                type='password'
-                                value={loginInfo.password}
-                                name='password'
-                                password='password'
-                                placeholder='Type password here...'
-                                onChange={onChange}
-                            />
-                        </label>
-                        {/* disabled until limitations are met */}
+                        <h1>WELCOME BACK</h1>
+                        <h2>Login</h2>
+                        <form onSubmit={onSubmit}>
+                            <label>
+                                <h3>Username: </h3>
+                            </label>
+                                <StyledInputs
+                                    id='username'
+                                    type='text'
+                                    value={loginInfo.username}
+                                    name='username'
+                                    placeholder='Type your username here...'
+                                    onChange={onChange}
+                                />
+                            <label>
+                                <h3>Password: </h3>
+                            </label>
+                                <StyledInputs
+                                    id='password'
+                                    type='password'
+                                    value={loginInfo.password}
+                                    name='password'
+                                    password='password'
+                                    placeholder='Type your password here...'
+                                    onChange={onChange}
+                                />
+                        </form>
+                            {/* disabled until limitations are met */}
                         <br></br>
                         <StyledLoginButton disabeled={disabled}>Login</StyledLoginButton>
-                    </form>
-                    {/* errors for attempting to log in with false info */}
-                    <p>{error.email}</p>
-                    <p>{error.password}</p>
+                        {/* errors for attempting to log in with false info */}
+                        <p>{error.username}</p>
+                        <p>{error.password}</p>
                     </StyledLogin>
                 </div>
             )}
