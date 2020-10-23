@@ -52,6 +52,7 @@ export default function UserSignUp() {
   const postNewUser = (newUser) => {
     axios.post(`https://anytime-fitness.herokuapp.com/api/auth/register`, newUser)
       .then((res) => {
+        console.log(res)
         setUsers([res.data, ...users]);
         setFormValues(initialFormValues);
       })

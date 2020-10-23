@@ -46,7 +46,8 @@ function App() {
 
       <Switch>
         <Route exact path={"/"}>
-          <Login />
+          {/* <Login /> */}
+          <ProtectedPage />
         </Route>
         <Route path={"/sign-up"}>
           <UserSignUp />

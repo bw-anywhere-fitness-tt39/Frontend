@@ -1,4 +1,11 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE} from "./appActions"
+import {
+    LOGIN_START, 
+    LOGIN_SUCCESS, 
+    LOGIN_FAILURE,
+    FETCH_START,
+    FETCH_SUCCESS,
+    FETCH_FAILURE
+} from "./appActions"
 
 
 export const initialState = {
@@ -27,6 +34,23 @@ export const appReducer = (state = initialState, action) => {
                 error: action.payload,
                 isLoading: false
             };
+        case FETCH_START:
+            return{
+                ...state,
+                isLoading: true
+            };
+        case FETCH_SUCCESS:
+            return {
+                ...state,
+                classes: action.payload,
+                isLoading: false
+            }
+        case FETCH_FAILURE:
+            return {
+                ...state, 
+                error: action.payload,
+                isLoading: false
+            }
         default:
             return state;
     };

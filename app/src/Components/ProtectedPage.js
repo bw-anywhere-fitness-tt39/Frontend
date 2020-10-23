@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import {connect } from 'react-redux'
+import { fetchClasses } from '../state/appActions'
 
 // name, instructor_name, type, intensity,location, date, max_size, duration, signedUp
 
@@ -11,13 +13,18 @@ const initialValues = {
     location: '',
     date: '',
     max_size: '',
-    duration: '',
+    duration: 0,
     signedUp: ''
 }
 
-export default function ProtectedPage() {
+const ProtectedPage = (props) => {
     const { register, handleSubmit, errors } = useForm();
     const [formValues, setFormValues] = useState(initialValues)
+    const { fetchClasses } = props
+
+    // useEffect(()=> {
+    //   fetchClasses()
+    // })
 
     const changeHandler = e => {
         setFormValues({
@@ -32,6 +39,7 @@ export default function ProtectedPage() {
     console.log(errors);
 
     return (
+      <>
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <label>Class Name</label>  
@@ -76,6 +84,23 @@ export default function ProtectedPage() {
         <br></br>
         <input type="submit" />
       </form>
+
+      <div className='classes'>
+        {props.classes.map((item)=>(
+          <h1>test</h1>
+        ))}
+      </div>
+
+
+      </>
     );
   }
+
+  const mapStateToProps = state => {
+    return {
+        classes: state.classes
+    };
+};
+
+  export default connect(mapStateToProps, { fetchClasses })(ProtectedPage);
 

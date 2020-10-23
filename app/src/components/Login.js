@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Spring } from 'react-spring/renderprops';
 import { login } from '../state/appActions'
 import {useHistory} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // Styled Components Start //
 
@@ -83,7 +84,7 @@ const StyledLoginButton = styled.button`
 // Styled Components End //
 
 const Login = (props) => {
-
+    const { login } = props
     // Setting state with an object of username and password
     const [ loginInfo, setLoginInfo ] = useState({
         username: '',
@@ -221,4 +222,4 @@ const Login = (props) => {
     )
 }
 
-export default Login
+export default connect(null, { login })(Login);
