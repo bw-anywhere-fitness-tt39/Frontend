@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import {connect } from 'react-redux'
+import { fetchClasses } from '../state/appActions'
 import styled from 'styled-components';
 
 // name, instructor_name, type, intensity,location, date, max_size, duration, signedUp
@@ -121,13 +123,18 @@ const initialValues = {
     location: '',
     date: '',
     max_size: '',
-    duration: '',
+    duration: 0,
     signedUp: ''
 }
 
-export default function ProtectedPage() {
+const ProtectedPage = (props) => {
     const { register, handleSubmit, errors } = useForm();
     const [formValues, setFormValues] = useState(initialValues)
+    const { fetchClasses } = props
+
+    // useEffect(()=> {
+    //   fetchClasses()
+    // })
 
     const changeHandler = e => {
         setFormValues({
@@ -199,4 +206,12 @@ export default function ProtectedPage() {
       </StyledBackgroundImg>
     );
   }
+
+  const mapStateToProps = state => {
+    return {
+        classes: state.classes
+    };
+};
+
+  export default connect(mapStateToProps, { fetchClasses })(ProtectedPage);
 
